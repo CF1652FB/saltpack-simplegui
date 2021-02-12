@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Saltpack SimpleGUI</title>
+
+    <link rel="stylesheet" href="../static/bootstrap/bootstrap.min.css" />
+    <script src="../static/jquery/jquery-3.5.1.min.js"></script>
+    <script src="../static/sweetalert2/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../static/sweetalert2/sweetalert2.dark.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script src="../static/scripts/anim.js"></script>
+    <div class="root">
+        <div class="d-flex justify-content-md-center align-items-center">
+            <div id="auth" class="auth">
+                <form id="authForm">
+                    <select class="form-select auth-input pad" id="labelSelect">
+                        <option selected>Select keyring to load</option>
+                        <option value="newKeyring">Generate a new identitiy</option>
+                    </select>
+                    <input type="text" pattern="[a-zA-Z0-9_]{3,16}" class="form-control auth-input pad hide"
+                        id="identitiyIn" value="" title="Format: [a-zA-Z0-9_]{3,16}" placeholder="Identity label">
+                    <input type="password" minlength="8" pattern=".{8,}" required class="form-control auth-input pad"
+                        id="password" disabled title="Please enter at least 8 characters" placeholder="Password">
+                    <input type="submit" id="authFormSubmit" class="btn btn-primary btn-warning auth-input pad"
+                        value="Submit" disabled>
+                </form><br><br>
+                <div class="lds-spinner hide" style="display: block; margin-left: auto; margin-right: auto;">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div id="main" class="mainpad hide">
+            <button id="encryptViewButton" class="btn btn-primary btn-warning btn-nav highlight" selected
+                type="submit">Encrypt</button>
+            <button id="decryptViewButton" class="btn btn-primary btn-warning btn-nav" type="submit">Decrypt</button>
+            <button id="add" class="btn btn-primary btn-warning btn-nav" type="submit">Add key</button>
+            <button id="cPass" class="btn btn-primary btn-warning btn-nav" type="submit">Password</button>
+            <button id="gMnemonic" class="btn btn-primary btn-warning btn-nav" type="submit">Mnemonic</button>
+            <button id="edit" class="btn btn-primary btn-warning btn-nav hide" type="submit"></button>
+            <button id="settings" class="btn btn-primary btn-warning btn-nav hide" type="submit">Settings</button>
+            <button id="exit" class="btn btn-primary btn-warning btn-nav" type="submit">Exit</button>
+            <br><br>
+            <div class="info">
+                <p>You are authenticated as: <span id="label"></span><br>
+                    Your public key: <span id="pKey"></span></p>
+                <section id="encLabel">
+                    <span>Type your message below to encrypt it.</span>
+                </section>
+                <section id="decLabel1" class="hide">
+                    <span>Paste a message below to decrypt it.</span>
+                </section>
+                <section id="decLabel2" class="hide">
+                    <span id="decInfoText"></span>
+                    <span id="composer" class="composer"></span>
+                </section>
+            </div>
+            <br>
+            <div id="encryptView">
+                <select id="receiver" class="form-select receiver">
+                    <option>Select receiver</option>
+                </select>
+                <select id="toSelf" class="form-select toSelf hide">
+                    <option>No ability to self-decrypt</option>
+                    <option>Capability to self-decrypt</option>
+                </select>
+                <br><br>
+                <textarea class="textarea left" id="message" disabled spellcheck="false"></textarea>
+                <textarea class="textarea right" id="encrypted" disabled spellcheck="false"></textarea>
+                <button class="btn btn-primary btn-warning btn-bottom pad" id="clearEncryptView"
+                    type="submit">Clear</button>
+                <button class="btn btn-primary btn-warning btn-bottom margin pad" id="clipboard" type="submit">Copy to
+                    clipboard</button>
+            </div>
+            <div id="decryptView" class="hide">
+                <br><br>
+                <textarea class="textarea left" id="encMessage" spellcheck="false"></textarea>
+                <textarea class="textarea right" id="decMessage" spellcheck="false"></textarea>
+                <button class="btn btn-primary btn-warning btn-bottom pad" id="decryptButton"
+                    type="submit">Decrypt</button>
+                <button class="btn btn-primary btn-warning btn-bottom margin pad" id="clearDecryptView"
+                    type="submit">Clear</button>
+            </div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+{
+  "name": "saltpack-simplegui",
+  "version": "1.0.0",
+  "description": "simple graphical user interface for saltpack",
+  "main": "src/main.js",
+  "repository": "",
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "CF1652FB",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^11.2.1",
+    "electron-builder": "^22.9.1"
+  },
+  "dependencies": {
+    "@samuelthomas2774/saltpack": "^0.2.2",
+    "argon2": "^0.27.1",
+    "bip39": "^3.0.3",
+    "electron-context-menu": "^2.4.0",
+    "js-sha3": "^0.8.0",
+    "sweetalert2": "^10.14.0",
+    "uuid": "^8.3.2"
+  },
+  "build": {
+    "appId": "com.gitlab.saltpack-simplegui",
+    "mac": {
+      "target": "dmg",
+      "icon": "static/icons/folder.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "executableName": "saltpack-simplegui-electron",
+      "description": "simple graphical user interface for saltpack",
+      "category": "utility",
+      "packageCategory": "utils"
+    },
+    "win": {
+      "target": "portable",
+      "icon": "static/icons/folder.ico"
+    }
+  }
+}
